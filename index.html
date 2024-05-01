@@ -57,20 +57,22 @@
             }
         }
 
-        async function disconnectSerial() {
-            if (serialPort) {
+       async function disconnectSerial() {
+           if (serialPort) {
                 try {
                     if (serialPort.readable) {
                         const reader = serialPort.readable.getReader();
-                        await reader.cancel(); // Cancelar operaciones pendientes de lectura
-                        reader.releaseLock();
+                        if (!reader.closed) { // Verificar si el lector no está cerrado
+                            await reader.cancel();
+                        }
                     }
                     if (serialPort.writable) {
                         const writer = serialPort.writable.getWriter();
-                        await writer.close(); // Cerrar el escritor
-                        writer.releaseLock();
+                        if (!writer.closed) { // Verificar si el escritor no está cerrado
+                            await writer.close();
+                        }
                     }
-                    await serialPort.close(); // Cerrar el puerto serie
+                    await serialPort.close();
                     console.log('Serial port closed successfully');
                     document.getElementById('disconnectButton').style.display = 'none';
                     document.getElementById('connectButton').style.display = 'block';
