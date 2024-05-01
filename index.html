@@ -87,7 +87,7 @@
         }
 
         async function sendSerialData() {
-            const dataToSend = '#10\n'; 
+            const dataToSend = '#30,test done!\n'; 
             if (serialPort && serialPort.writable) {
                 const writer = serialPort.writable.getWriter();
                 try {
