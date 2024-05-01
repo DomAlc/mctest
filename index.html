@@ -34,6 +34,7 @@
     <div id="terminal"></div>
     <button id="connectButton">Connect to Serial</button>
     <button id="disconnectButton" style="display:none">Disconnect from Serial</button>
+    <input type="text" id="inputText" placeholder="Enter text to send" maxlength="15">
     <button id="sendButton" style="display:none">Send Data</button>
 
     <script>
@@ -113,8 +114,9 @@
         }
 
 
-        async function sendSerialData() {
-            const dataToSend = '#30test done!\n';
+       async function sendSerialData() {
+            const inputText = document.getElementById('inputText').value;
+            const dataToSend = `#30${inputText}\n`; // Construir la trama con el texto introducido
             if (serialPort && serialPort.writable) {
                 const writer = serialPort.writable.getWriter();
                 try {
