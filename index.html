@@ -62,13 +62,13 @@
                 try {
                     if (serialPort.readable) {
                         const reader = serialPort.readable.getReader();
-                        if (!reader.closed) { // Verificar si el lector no está cerrado
+                        if (reader) {
                             await reader.cancel();
                         }
                     }
                     if (serialPort.writable) {
                         const writer = serialPort.writable.getWriter();
-                        if (!writer.closed) { // Verificar si el escritor no está cerrado
+                        if (writer) {
                             await writer.close();
                         }
                     }
