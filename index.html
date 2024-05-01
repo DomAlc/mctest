@@ -31,12 +31,11 @@
         <div id="image-container">
             <img src="mc3_front.png" width="200" height="200">
             <input type="text" id="inputText" placeholder="Enter text to send" maxlength="15">
+            <button id="sendButton" style="display:none">Send Data</button>
         </div>
     </div>
     <div id="terminal"></div>
     <button id="connectButton">Connect to Serial</button>
-    <button id="disconnectButton" style="display:none">Disconnect from Serial</button>
-    <button id="sendButton" style="display:none">Send Data</button>
 
     <script>
         let serialPort;
@@ -50,7 +49,6 @@
                 await serialPort.open({ baudRate: 115200 });
                 readSerial();
                 document.getElementById('connectButton').style.display = 'none';
-                document.getElementById('disconnectButton').style.display = 'block';
                 document.getElementById('sendButton').style.display = 'block';
             } catch (error) {
                 console.error('Error connecting to serial port:', error);
@@ -137,9 +135,6 @@
 
         // Event listener para conectar al hacer clic en el botón
         document.getElementById('connectButton').addEventListener('click', connectSerial);
-
-        // Event listener para desconectar al hacer clic en el botón
-        document.getElementById('disconnectButton').addEventListener('click', disconnectSerial);
 
         // Event listener para enviar datos al hacer clic en el botón
         document.getElementById('sendButton').addEventListener('click', sendSerialData);
