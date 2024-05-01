@@ -6,7 +6,13 @@
     <title>Web Serial Example</title>
     <style>
         #container {
-            text-align: center; /* Centrar horizontalmente el contenido */
+            display: flex;
+            align-items: center;
+        }
+
+        #inputText {
+            flex: 1; /* Ocupa todo el espacio disponible */
+            margin-right: 10px; /* Espacio entre el cuadro de entrada y el botón */
         }
         
         #terminal {
@@ -26,16 +32,17 @@
     </style>
 </head>
 <body>
-    <h1>MochiCard communication test</h1>
+    <h1>MochiCard communication test</h1>   
     <div id="container">
         <div id="image-container">
             <img src="mc3_front.png" width="200" height="200">
-            <input type="text" id="inputText" placeholder="Enter text to send" maxlength="15">
-            <button id="sendButton" style="display:none">Send Data</button>
         </div>
+        <input type="text" id="inputText" placeholder="Enter text to send" maxlength="15">
+        <button id="connectButton">Connect to Serial</button>
+        <button id="sendButton" style="display:none">Send Data</button>
     </div>
     <div id="terminal"></div>
-    <button id="connectButton">Connect to Serial</button>
+
 
     <script>
         let serialPort;
