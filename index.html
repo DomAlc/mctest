@@ -27,7 +27,7 @@
         async function connectSerial() {
             try {
                 serialPort = await navigator.serial.requestPort();
-                await serialPort.open({ baudrate: 115200 });
+                await serialPort.open({ baudRate: 115200 });
                 readSerial();
             } catch (error) {
                 console.error('Error connecting to serial port:', error);
